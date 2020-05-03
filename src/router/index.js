@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Landing from '../components/Landing.vue';
 import Articules from '../components/articules/articlules.vue'
-
+import AddArticules from '../components/articules/form/AddArticules.vue'
 Vue.use(VueRouter);
 
 const routes = [
@@ -15,6 +15,11 @@ const routes = [
 		path: '/articules',
 		name: 'Articules',
 		component: Articules
+	},
+	{
+		path: '/newArticles',
+		name: 'AddArticules',
+		component: AddArticules
 	}
 ];
 

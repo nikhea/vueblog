@@ -4,13 +4,16 @@
       <router-link to="/" class="nav_brand">Article Project</router-link>
       <ul>
         <li>
-          <router-link to="#">Articles</router-link>
+          <router-link to="/articules">Articles</router-link>
         </li>
         <li>
           <router-link to="#">About</router-link>
         </li>
         <li>
           <router-link to="/newArticles">Create</router-link>
+        </li>
+          <li>
+          <router-link to="#">Login</router-link>
         </li>
       </ul>
     </div>
@@ -42,7 +45,7 @@ a {
 }
 .nav_brand {
   grid-column: 2/5;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 ul {
@@ -52,7 +55,7 @@ ul {
   padding: 0px 22px;
 }
 ul > * {
-  margin-top: 10px;
+  margin-top: 3px;
 }
 li {
   padding-bottom: 3px;
