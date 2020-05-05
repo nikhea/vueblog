@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
     <div class="container navs">
-      <router-link to="/" class="nav_brand">Article Project</router-link>
+      <router-link to="/" class="nav_brand">ArticleProject</router-link>
       <ul>
         <li>
           <router-link to="/articules">Articles</router-link>
@@ -28,6 +28,7 @@ export default {};
 <style scoped>
 a {
   color: #fff;
+  
 }
 .nav {
   background-color: #343a40;
@@ -46,6 +47,8 @@ a {
 .nav_brand {
   grid-column: 2/5;
   font-size: 1.3em;
+  font-weight: bold;
+  letter-spacing: 1.5px
 }
 
 ul {
@@ -56,10 +59,12 @@ ul {
 }
 ul > * {
   margin-top: 3px;
+  font-weight: normal;
 }
 li {
   padding-bottom: 3px;
   transition: all 2s;
+  
 }
 li:hover {
   border-bottom: 1px solid #fff;

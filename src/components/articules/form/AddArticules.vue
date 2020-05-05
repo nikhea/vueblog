@@ -1,9 +1,25 @@
 <template>
   <div class="container">
-    <div v-show="show" class="Vshow">
-      Pls enter all Fields
-      <span @click="colseX">x</span>
+    <div class="render">
+      <div v-show="show" class="Vshow">
+        Pls enter all Fields
+        <span @click="colseX">x</span>
+      </div>
+      <div v-show="add" class="Ashow">
+        Article Added
+        <span @click="colseX">x</span>
+      </div>
     </div>
+
+    <!-- <div class="render">
+      <div v-show="show" class="Vshow">
+        <div v-for="error in errors" :key="error.index" >
+          {{error}}
+          <span @click="colseX">X</span>
+        </div>
+      </div>
+    </div>-->
+
     <div class="add">
       <form @submit="newArticle">
         <div class="form-group">
@@ -34,6 +50,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   name: "",
   data() {
@@ -42,31 +59,73 @@ export default {
       author: "",
       image: "",
       description: "",
-      show: false
+      show: false,
+      add: false,
+      errors: [],
+      success: []
     };
   },
   methods: {
-    newArticle: function(e) {
-      e.preventDefault();
+    ...mapActions(["addArticule"]),
+    checkForm: function() {
       if (!this.title || !this.author || !this.image || !this.description) {
         this.show = true;
+        // this.errors.push("please enter all fields");
       }
-      if (this.title || this.author || this.image || this.description) {
+      if (!this.title) {
+        this.show = true;
+        // this.errors.push("title can not be empty");
+      } else {
         this.show = false;
       }
+      if (!this.author) {
+        this.show = true;
+        // this.errors.push("author can not be empty");
+      } else {
+        this.show = false;
+      }
+      if (!this.image) {
+        this.show = true;
+        // this.errors.push("image can not be empty");
+      } else {
+        this.show = false;
+      }
+      if (!this.description) {
+        // this.errors.push("description enter all fields");
+        this.show = true;
+      } else {
+        this.show = false;
+      }
+
+      // if (this.title || this.author || this.image || this.description) {
+      //   this.show = false;
+      //   this.add = true;
+      // }
+    },
+    newArticle: function(e) {
+      this.checkForm();
+      e.preventDefault();
+      let newArticle = {
+         title:this.title,
+         author: this.author,
+         image: this.image,
+         description: this.description
+
+      }
+      this.addArticule(newArticle)
     },
     colseX: function() {
       this.show = false;
+      this.add = false;
     }
   },
   created() {
-    if (this.show !== true || this.show === true) {
-      setInterval(() => {
-        this.show = false;
-        //  console.log('dfffghujjii')
-      }, 3000);
-     
-    }
+    // if (this.show !== true || this.show === true) {
+    //   setInterval(() => {
+    //     this.show = false;
+    //     //  console.log('dfffghujjii')
+    //   }, 3000);
+    // }
   }
 };
 </script>
@@ -90,12 +149,18 @@ textarea {
   color: #495057;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border-bottom: 0.5px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 textarea {
   height: 10vh;
+}
+textarea:focus{
+border-bottom: 1.5px solid #ced4da;
+}
+input:focus{
+border-bottom: 1.5px solid #ced4da;
 }
 .form-label {
   display: inline-block;
@@ -140,16 +205,34 @@ textarea {
 .warning:hover {
   background: var(--info);
 }
-.Vshow {
-  text-align: center;
-  padding: 20px 0px;
-  background: red;
+.render > div {
   /* width: 50em; */
   margin: 10px 20px;
+  color: #fff;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  word-spacing: 0.2em;
+  text-align: center;
+  padding: 20px 0px;
+}
+.Vshow {
+  background: var(--red);
+}
+.Ashow {
+  background: var(--success);
 }
 .Vshow > span {
   border-radius: 50px;
   background: rgb(189, 51, 51);
+  padding: 3px 10px;
+  font-size: 22px;
+  margin-left: 32px;
+  cursor: pointer;
+  color: #fff;
+}
+.Ashow > span {
+  border-radius: 50px;
+  background: lawngreen;
   padding: 3px 10px;
   font-size: 22px;
   margin-left: 32px;
