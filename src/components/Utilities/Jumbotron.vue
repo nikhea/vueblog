@@ -18,7 +18,7 @@ export default {
 <style scoped>
 .jumbotron {
   margin-top: 70px;
-  margin-bottom: 3rem;
+  margin-bottom: 70px;
   background-color: #e9ecef;
   border-radius: 0.3rem;
   padding: 4rem 2rem;
@@ -30,13 +30,14 @@ export default {
 }
 .text > * {
   margin-bottom: 15px;
-  font-weight: normal;
+  /* font-weight: normal; */
   text-transform: capitalize;
 }
 h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
   font-weight: 500;
+  /* font-weight: bold; */
   line-height: 1.2;
 
 }

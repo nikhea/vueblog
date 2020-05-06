@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapActions } from "vuex";
 export default {
   name: "",
   data() {
@@ -106,27 +106,38 @@ export default {
       this.checkForm();
       e.preventDefault();
       let newArticle = {
-         title:this.title,
-         author: this.author,
-         image: this.image,
-         description: this.description
-
+        title: this.title,
+        author: this.author,
+        image: this.image,
+        description: this.description
+      };
+      this.addArticule(newArticle);
+      this.colseXz();
+      if (this.add === true) {
+        setTimeout(() => {
+          this.$router.push("/articules");
+        }, 5000);
       }
-      this.addArticule(newArticle)
     },
     colseX: function() {
       this.show = false;
       this.add = false;
+    },
+    colseXz: function() {
+      if (this.show !== true || this.show === true) {
+        setTimeout(() => {
+          this.show = false;
+          if (this.title || this.author || this.image || this.description) {
+            this.add = true;
+          }
+          setTimeout(() => {
+            this.add = false;
+          }, 2000);
+        }, 2000);
+      }
     }
   },
-  created() {
-    // if (this.show !== true || this.show === true) {
-    //   setInterval(() => {
-    //     this.show = false;
-    //     //  console.log('dfffghujjii')
-    //   }, 3000);
-    // }
-  }
+  created() {}
 };
 </script>
 
@@ -141,31 +152,30 @@ input,
 textarea {
   display: block;
   width: 100%;
-  height: calc(1.5em + 0.75rem + 2px);
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
+  /* height: calc(1.5em + 0.75rem + 2px); */
   color: #495057;
   background-color: #fff;
   background-clip: padding-box;
   border-bottom: 0.5px solid #ced4da;
-  border-radius: 0.25rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+input{
+  margin-bottom: 15px
+}
+input:focus {
+  border-bottom: 1.5px solid #ced4da;
 }
 textarea {
   height: 10vh;
 }
-textarea:focus{
-border-bottom: 1.5px solid #ced4da;
+textarea:focus {
+  border-bottom: 1.5px solid #ced4da;
 }
-input:focus{
-border-bottom: 1.5px solid #ced4da;
-}
+
 .form-label {
   display: inline-block;
-  /* margin-bottom: 0.5rem; */
+  margin-bottom: 1rem;
   padding: 10px 0px;
+  text-transform: capitalize;
 }
 .btn {
   margin-right: 1rem;
@@ -240,3 +250,20 @@ border-bottom: 1.5px solid #ced4da;
   color: #fff;
 }
 </style>
+
+
+
+
+
+  // /* padding: 0.375rem 0.75rem; */
+  // padding: 0rem;
+  // margin: 0rem;
+  // font-size: 1rem;
+  // font-weight: 400;
+  // /* line-height: 1.5; */
+  // color: #495057;
+  // background-color: #fff;
+  // background-clip: padding-box;
+  // border-bottom: 0.5px solid #ced4da;
+  // /* border-radius: 0.25rem; */
+  // transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
