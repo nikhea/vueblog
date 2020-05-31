@@ -4,10 +4,11 @@
     <router-link :to="`/articles/${articules._id}`">
       <div class="articles">
         <img class="articles_img" :src="articules.image" alt="artticule img" />
-        <h1 class="articules_title">{{ articules.title}}</h1>
+        <h1 class="articules_title">{{ articules.title | toUppercase}}</h1>
         <div class="articules_description">
           <div v-if="articules.description.length > 17">
-            <p>{{articules.description.substring(0,201)}}...</p>
+            <!-- <p>{{articules.description.substring(0,201)}}...</p> -->
+            <p>{{articules.description | reduceLength}}...</p>
           </div>
           <div v-else>
             <p>{{articules.description}}</p>
@@ -15,7 +16,8 @@
           <div class="articles_author">
             <h6>written by {{articules.author}}</h6>
           </div>
-          <div>{{articules.createdDate.toLocaleString()}}</div>
+          <!-- <div>{{articules.createdDate.toLocaleString()}}</div> -->
+          <div>{{articules.createdDate | moment}}</div>
         </div>
         <!-- <router-link :to="`/articles/${articules._id}`">
         <button class="artticles_btn">read</button>
@@ -27,6 +29,8 @@
 
 
 <script>
+// import VueMomemt from 'vue-moment'
+import moment from 'moment'
 export default {
   name: "articluesList",
   props: ["articules"],
@@ -35,14 +39,31 @@ export default {
       dat: new Date()
     };
   },
+  mixins:[],
   methods: {
-    datee: function() {
-  
-    }
+     moment: function () {
+    return moment();
+  }
   },
-  created(){
-    console.log(this.articules. createdDate.spl)
-    console.log(this.dat.toLocaleString())
+  filters: {
+    reduceLength(value) {
+      return `${value.substring(0, 201)}...`;
+    },
+    toUppercase(value){
+   return value.toUpperCase()
+    },
+    change(value){
+      console.log(value)
+      return value.toLocaleString()
+    },
+     moment: function (value) {
+    // return moment(value).format('MMMM Do YYYY, h:mm:ss a');
+    return moment(value).format('MMMM Do YYYY, h:mm:ss a');
+  }
+  },
+  created() {
+    // console.log(this.articules.createdDate.spl);
+    // console.log(this.dat.toLocaleString());
   }
 };
 </script>

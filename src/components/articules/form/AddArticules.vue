@@ -227,6 +227,7 @@ textarea:focus {
 }
 .Vshow {
   background: var(--red);
+    transition: background 0.2s;
 }
 .Ashow {
   background: var(--success);
@@ -239,7 +240,10 @@ textarea:focus {
   margin-left: 32px;
   cursor: pointer;
   color: #fff;
+ 
+
 }
+
 .Ashow > span {
   border-radius: 50px;
   background: lawngreen;
@@ -248,6 +252,7 @@ textarea:focus {
   margin-left: 32px;
   cursor: pointer;
   color: #fff;
+  transition: all 1s
 }
 </style>
 

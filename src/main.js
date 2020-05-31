@@ -21,7 +21,7 @@ Vue.component('font-awesome-layers', FontAwesomeLayers);
 Vue.component('font-awesome-layers-text', FontAwesomeLayersText);
 library.add(faSpinner,faCoffee,faTrash, faDesktop, faJs,faVuejs, faShoppingCart, faBaseballBall, faEdit);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
-
+Vue.use(require('vue-moment'));
 Vue.config.productionTip = false;
 // Vue.directive("red", {
 // 	bind(el) {
